@@ -1,4 +1,4 @@
-﻿#include <windows.h>
+#include <windows.h>
 #include <iostream>
 #include <math.h>
 #include <stdio.h>
@@ -7,13 +7,13 @@
 
 using namespace std;
 
-->DAR VALORES A ESTAS CONSTANTES
+//-> DAR VALORES A ESTAS CONSTANTES
 
--> #define MAXPETICIONES------ -
--> #define MAXUSUARIOS----
+#define MAXPETICIONES 
+#define MAXUSUARIOS 
 
-->INTRODUCIR VALORES DE FUNCIONAMIENTO
-->BIEN AQU� O LEYENDOLOS COMO VALORES POR TECLADO
+//-> INTRODUCIR VALORES DE FUNCIONAMIENTO
+//-> BIEN AQUI O LEYENDOLOS COMO VALORES POR TECLADO
 
 int numUsuarios;
 int numPeticiones;
@@ -74,7 +74,7 @@ DWORD WINAPI Usuario(LPVOID parametro) {
 		datoHilo[numHilo].contPet++;
 
 		// Espera los milisegundos calculados previamente
-		->		Sleep(Valor entero en milisegundos);
+		Sleep(tiempo);
 	}
 	return dwResult;
 }
@@ -88,29 +88,31 @@ int main(int argc, char* argv[])
 
 	// Leer por teclado los valores para realizar la prueba o asignarlos
 
-	->	POR HACER
+//->	POR HACER
+	numUsuarios = atoi(argv[1]);
+	numPeticiones = atoi(argv[2]);
+	tReflex = atoi(argv[3]) * 1000;
 
-		// Lanza los hilos
-		for (i = 0; i < numUsuarios; i++) {
-			parametro[i] = i;
-			handleThread[i] = CreateThread(NULL, 0, Usuario, &parametro[i], 0, NULL);
-			if (handleThread[i] == NULL) {
-				cerr << "Error al lanzar el hilo" << endl;
-				exit(EXIT_FAILURE);
-			}
+	// Lanza los hilos
+	for (i = 0; i < numUsuarios; i++) {
+		parametro[i] = i;
+		handleThread[i] = CreateThread(NULL, 0, Usuario, &parametro[i], 0, NULL);
+		if (handleThread[i] == NULL) {
+			cerr << "Error al lanzar el hilo" << endl;
+			exit(EXIT_FAILURE);
 		}
+	}
 
 	// Hacer que el Thread principal espere por sus hijos
 
 	for (i = 0; i < numUsuarios; i++)
 		WaitForSingleObject(handleThread[i], INFINITE);
 
-
 	// Recopilar resultados y mostrarlos a pantalla o 
 	// guardarlos en disco
 
-	->	POR HACER
+//->	POR HACER
 
 
-		return 0;
+	return 0;
 }
