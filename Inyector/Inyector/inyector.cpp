@@ -14,7 +14,7 @@ using namespace std;
 #define TAM_RES 1250
 
 // INTRODUCIR VALORES DE FUNCIONAMIENTO
-// BIEN AQU� O LEYENDOLOS COMO VALORES POR TECLADO
+// BIEN AQUÍ O LEYENDOLOS COMO VALORES POR TECLADO
 
 int numUsuarios;
 int numPeticiones;
@@ -146,17 +146,17 @@ DWORD WINAPI Usuario(LPVOID parametro) {
 			exit(EXIT_FAILURE);
 		}
 
-		// 5 .- Cerrar la conexi�n
+		// 5 .- Cerrar la conexió
 		//
 
 		closesocket(elSocket);
 
-		// Fin de la petici�n
+		// Fin de la petición
 
-		// Calcular el tiempo de reflexi�n antes de la siguiente petici�n
+		// Calcular el tiempo de reflexión antes de la siguiente petició
 		tiempo = DistribucionExponencial((float)tReflex);
 
-		// Guarda los valores de la petici�n
+		// Guarda los valores de la petició
 		datoHilo[numHilo].reflex[i] = tiempo;
 		datoHilo[numHilo].contPet++;
 
@@ -175,17 +175,9 @@ int main(int argc, char* argv[])
 
 	// Leer por teclado los valores para realizar la prueba o asignarlos
 	//POR HACER
-	cout << "Numero de usuarios: " << endl;
-	//cin >> argc;
-	numUsuarios = 50;// atoi(argv[0]);
-
-	cout << "Tiempo de reflexion/ Tiempo de peticiones: " << endl;
-	//cin >> argv[1];
-	tReflex = 5;// atoi(argv[1]);
-
-	cout << "Numero de peticiones maximas: " << endl;
-	//cin >> argv[1];
-	numPeticiones = 10;// atoi(argv[2]);
+	numUsuarios = atoi(argv[0]);
+	tReflex = atoi(argv[1]);
+	numPeticiones = atoi(argv[2]);
 
 	// Inicializar los sockets UNA sola vez en el programa
 
@@ -207,7 +199,7 @@ int main(int argc, char* argv[])
 	for (i = 0; i < numUsuarios; i++)
 		WaitForSingleObject(handleThread[i], INFINITE);
 
-	// Descargar la librer�a de sockets, aqu� o donde se acabe
+	// Descargar la librería de sockets, aquí o donde se acabe
 	// el programa
 
 	Fin_sockets();
@@ -215,15 +207,15 @@ int main(int argc, char* argv[])
 	// Recopilar resultados y mostrarlos a pantalla o 
 	// guardarlos en disco
 	//POR HACER
-	FILE* archivo_texto;
-	fopen_s(&archivo_texto, "prueba_inicial.txt", "w");
-	fprintf(archivo_texto, "NumeroUsuario NumeroPeticiones TiempoReflexion\n");
+	FILE* testfile;
+	fopen_s(&testfile, "test.txt", "w");
+	fprintf(testfile, "NumeroUsuarios NumeroPeticiones TiempoReflexion\n");
 	for (i = 0; i < numUsuarios; i++) {
 		for (j = 0; j < numPeticiones; j++) {
-			fprintf(archivo_texto, "%d ; %d ; %f\n", i, j, datoHilo[i].reflex[j]);
+			fprintf(testfile, "%d ; %d ; %f\n", i, j, datoHilo[i].reflex[j]);
 		}
 	}
-	fclose(archivo_texto);
+	fclose(testfile);
 
 	return 0;
 }
