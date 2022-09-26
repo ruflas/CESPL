@@ -1,0 +1,11 @@
+
+HORA INICIO DE MEDICION:  Mon Sep 26 10:29:26 2022
+
+HORA FIN DE MEDICION: Mon Sep 26 10:29:31 2022
+ 
+
+Parametros del experimento: 
+Nº Usuarios: 90; Tpo. Reflex (seg): 1.250000; IP servidor: 192.168.203.238; Transitorio (seg): 0; Medicion (seg): 5 
+N. usu.; N. pet.; Tpo Reflex(Seg); Tpo. Ini.(mseg); Tpo. Fin(mseg)
+
+
