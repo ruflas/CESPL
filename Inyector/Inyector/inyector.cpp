@@ -113,7 +113,7 @@ DWORD WINAPI Usuario(LPVOID parametro) {
 		if (elSocket == INVALID_SOCKET) {
 			//Control de posibles errores
 			printf("Error %d INVALID_SOCKET", WSAGetLastError());
-			exit(EXIT_FAILURE);
+			exit(WSACleanup());
 		}
 
 		// 2 .- Conexión con el servidor
@@ -125,7 +125,7 @@ DWORD WINAPI Usuario(LPVOID parametro) {
 		valorRetorno = connect(elSocket, (struct sockaddr*) & dirServidor, sizeof(dirServidor));
 		if (valorRetorno == SOCKET_ERROR) {
 			printf("Error %d SOCKET_ERROR", WSAGetLastError());
-			exit(EXIT_FAILURE);
+			exit(WSACleanup());
 		}
 
 		// 3 .- Enviar una cadena
@@ -134,7 +134,7 @@ DWORD WINAPI Usuario(LPVOID parametro) {
 		if (valorRetorno == SOCKET_ERROR) {
 			//Control de posibles errores
 			printf("Error %d SOCKET_ERROR", WSAGetLastError());
-			exit(EXIT_FAILURE);
+			exit(WSACleanup());
 		}
 
 		// 4 .- Recibir la respuesta
@@ -143,7 +143,7 @@ DWORD WINAPI Usuario(LPVOID parametro) {
 		if (valorRetorno != TAM_RES) {
 			//Control de posibles errores
 			printf("Error %d TAM_RES", WSAGetLastError());
-			exit(EXIT_FAILURE);
+			exit(WSACleanup());
 		}
 
 		// 5 .- Cerrar la conexió
@@ -161,7 +161,7 @@ DWORD WINAPI Usuario(LPVOID parametro) {
 		datoHilo[numHilo].contPet++;
 
 		// Espera los milisegundos calculados previamente
-		Sleep((unsigned int)tiempo / 1000);
+		Sleep((unsigned int)tiempo * 1000);
 	}
 	return dwResult;
 }
@@ -175,9 +175,9 @@ int main(int argc, char* argv[])
 
 	// Leer por teclado los valores para realizar la prueba o asignarlos
 	//POR HACER
-	numUsuarios = atoi(argv[0]);
-	tReflex = atoi(argv[1]);
-	numPeticiones = atoi(argv[2]);
+	numUsuarios = atoi(argv[1]);
+	tReflex = atoi(argv[2]);
+	numPeticiones = atoi(argv[3]);
 
 	// Inicializar los sockets UNA sola vez en el programa
 
