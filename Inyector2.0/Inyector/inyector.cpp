@@ -98,13 +98,11 @@ int Ini_sockets(void) {
 	return error;
 }
 
-
 //------------------------------------------------------------------------
-// Función para descargar la librer�a de sockets
+// Funci�n para descargar la librer�a de sockets
 void Fin_sockets(void) {
 	WSACleanup();
 }
-
 
 // Funcion preparada para ser un thread. Simula un usuario
 DWORD WINAPI Usuario(LPVOID parametro) {
@@ -296,8 +294,7 @@ int main(int argc, char* argv[])
 	tickInicio.QuadPart = tickBase.QuadPart + (LONGLONG)(segCal * 1000 * ticksPorMilisegundo);
 	tickFin.QuadPart = tickInicio.QuadPart + (LONGLONG)(segMed * 1000 * ticksPorMilisegundo);
 
-	// Lanza los hilos
-
+	// Lanzar los hilos
 	for (i = 0; i < numUsuarios; i++) {
 		parametro[i] = i;
 		handleThread[i] = CreateThread(NULL, 0, Usuario, &parametro[i], 0, NULL);
@@ -306,6 +303,11 @@ int main(int argc, char* argv[])
 			exit(EXIT_FAILURE);
 		}
 	}
+
+	// Hacer que el Thread principal espere por sus hijos
+
+	for (i = 0; i < numUsuarios; i++)
+		WaitForSingleObject(handleThread[i], INFINITE);
 
 		Fin_sockets();
 
@@ -322,8 +324,7 @@ int main(int argc, char* argv[])
 	ctime_s(cadena, sizeof(cadena), &hora_inicio_medicion);
 
 	//Almacenar en el fichero la hora de inicio de la medicion y la hora de fin de la medicion.
-	if(info!=0)
-		fprintf(info, "\nHORA INICIO DE MEDICION:  %s\n", cadena);
+	fprintf(info, "\nHORA INICIO DE MEDICION:  %s\n", cadena);
 
 	ctime_s(cadena, sizeof(cadena), &hora_fin_medicion);
 
@@ -363,8 +364,7 @@ int main(int argc, char* argv[])
 	printf("Tpo.Res2(mseg) : %f\n", (float)sumaTiempos2 / sumaPet);
 	printf("Product. (pet/seg): %f\n", (float)sumaPet / segMed);
 
-	if(info!=0)
-		fclose(info);
+	fclose(info);
 
 	return 0;
 }
