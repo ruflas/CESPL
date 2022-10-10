@@ -1,3 +1,2 @@
 ﻿  inyector.cpp
-C:\Users\CES\Documents\CESPL-main\Inyector\Inyector\inyector.cpp(179,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Inyector.vcxproj -> C:\Users\CES\Documents\CESPL-main\Inyector2.0\Inyector\x64\Debug\Inyector.exe
