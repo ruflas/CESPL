@@ -1,0 +1,39 @@
+Ejercicio 4
+
+IP(indice prestaciones), TS(tiempo de servicio) n(nuevo) b(base)
+
+IPn/IPb=un/ub=1/sn/1/sb  //  Sn=IPb/Jpn *Sb
+
+CPU  IPn/IPb=µn/µb=Nm/Sn/Nb/Sb // Sn=Nm*JPb/Nb*JPn * Sb
+
+X >= N/(Rmax+Z)=400/(0.16+5)=77.52 pet/seg
+
+µni >= X*Vi/0.8
+
+µncpu >= 77.52*5/0.8 = 484.5 pet/seg
+
+µndisco >= 77.52*4/0.8 = 387.6 pet/seg
+
+µnred >= 77.52*2/0.8 = 193.8 pet/seg
+
+IPndisco=µndisco*IPbdisco/µbdisco =µndisco*IPbdisco*Sbdisco=387.6*102*0.013=513.95
+
+IPnred=µnred*IPbred*Sbred=193.8*100*0.02=3875.96
+
+IPncpu=µncpu*IPbcpu/µbcpu=µncpu*IPbcpu*Sbcpu/Nbcpu=485.5*175*0.06/4=1271.8
+
+Compos  
+Intel Xeon E5-2620 v4 2,1GHz x2 = 690*2
+ST4000DM005 SATA 4 TB 7200 rpm x4 = 180*4
+10GBase-CX4 de Myrinet x1 =10000
+
+Sdisco=(102/180)*0.013= 0.0073
+Sred=(1000/10000)*0.02=0.002
+Scpu=(8*175)/(4*690)*0.06=0.0304
+
+Tiempo de respuesta min
+
+Vred*Tsred+Vdisco*Tsdisco*Vcpu*Tscpu
+2*0.002+4*0.0073+5*0.0304 = 0.1852>0.16  Por lo que esta configuración no cumpliria los requisitos
+
+Para que las cumpla metemos un procesador mas potente
