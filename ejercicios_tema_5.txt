@@ -1,0 +1,35 @@
+
+1-
+
+Tienen la misma disponibilidad, porque ambos han estado funcionando el mismo tiempo
+
+El B, se ha caido solo una vez
+
+MTTF=1/Tasa de fallos(fallos por hora) 1/(2/168=)84
+
+2_
+
+disponibilidad
+A=Tiempo_activo/Tiempo_total=(tiempo_total-tiempo_caido)/Tiempo_total
+Aa=10080-80/10080=0'9920
+Ab=10080-90/10080=0'9911
+
+fiabilidad
+λa=4/168
+λb=3/168 
+R()
+
+tasa de reparacion
+ μ=reparaciones/hora=1/20mins=3rep/hora
+ 
+ MTBF
+ MTTF+MTTR
+ 168/3+60/30=58'5
+ 
+ 12_
+ 
+ para obtener la probabilidad (1-fiabilidad)x100= %
+ 
+ En sistemas no reparables fiabilidad y disponibilidad es lo mismo
+ 
+ 
